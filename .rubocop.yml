@@ -1,0 +1,49 @@
+plugins:
+  - rubocop-minitest
+
+AllCops:
+  TargetRubyVersion: 3.1
+  NewCops: enable
+  SuggestExtensions: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Style/SafeNavigationChainLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 50
+
+Metrics/AbcSize:
+  Max: 50
+
+Metrics/ClassLength:
+  Max: 300
+
+Metrics/CyclomaticComplexity:
+  Max: 25
+
+Metrics/PerceivedComplexity:
+  Max: 25
+
+Metrics/BlockLength:
+  Max: 50
+
+Layout/LineLength:
+  Max: 180
+
+Naming/MethodParameterName:
+  MinNameLength: 1
+
+Naming/VariableNumber:
+  Enabled: false
+
+Gemspec/DevelopmentDependencies:
+  Enabled: false
+
+Minitest/MultipleAssertions:
+  Max: 10

@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require "fjord_boot_camp/version"
-require "fjord_boot_camp/configuration"
-require "fjord_boot_camp/client"
-require "fjord_boot_camp/resources/reports"
-require "fjord_boot_camp/resources/users"
-require "fjord_boot_camp/resources/practices"
-require "fjord_boot_camp/resources/trainee_progresses"
+require 'fjord_boot_camp/version'
+require 'fjord_boot_camp/configuration'
+require 'fjord_boot_camp/client'
+require 'fjord_boot_camp/resources/reports'
+require 'fjord_boot_camp/resources/users'
+require 'fjord_boot_camp/resources/practices'
+require 'fjord_boot_camp/resources/trainee_progresses'
 
 module FjordBootCamp
   class Error < StandardError; end

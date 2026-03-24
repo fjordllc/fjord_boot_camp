@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "faraday"
-require "json"
+require 'faraday'
+require 'json'
 
 module FjordBootCamp
   class Client
@@ -36,8 +36,8 @@ module FjordBootCamp
 
     def connection
       @connection ||= Faraday.new(url: configuration.base_url) do |f|
-        f.headers["Authorization"] = "Bearer #{configuration.access_token}" if configuration.access_token
-        f.headers["Accept"] = "application/json"
+        f.headers['Authorization'] = "Bearer #{configuration.access_token}" if configuration.access_token
+        f.headers['Accept'] = 'application/json'
         f.adapter Faraday.default_adapter
       end
     end
@@ -47,7 +47,7 @@ module FjordBootCamp
       when 200..299
         JSON.parse(response.body)
       when 401
-        raise AuthenticationError, "Authentication failed. Check your access token."
+        raise AuthenticationError, 'Authentication failed. Check your access token.'
       when 404
         raise NotFoundError, "Resource not found: #{response.env.url.path}"
       else

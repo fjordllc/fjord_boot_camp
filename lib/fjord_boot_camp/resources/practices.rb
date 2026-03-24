@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require_relative "base"
+require_relative 'base'
 
 module FjordBootCamp
   module Resources
     class Practices < Base
       # プラクティス一覧を取得
       def list
-        get("/api/practices")
+        get('/api/practices')
       end
 
       # プラクティス詳細を取得

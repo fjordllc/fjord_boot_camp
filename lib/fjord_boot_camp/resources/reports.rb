@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "base"
+require_relative 'base'
 
 module FjordBootCamp
   module Resources
@@ -18,7 +18,7 @@ module FjordBootCamp
         params[:company_id] = company_id if company_id
         params[:limit] = limit if limit
         params[:page] = page if page
-        get("/api/reports", params)
+        get('/api/reports', params)
       end
 
       # 日報詳細を取得（コメント・プラクティス付き）
@@ -29,7 +29,7 @@ module FjordBootCamp
 
       # 最近の日報を取得（直近20件）
       def recent
-        get("/api/reports/recents")
+        get('/api/reports/recents')
       end
     end
   end

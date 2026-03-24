@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "base"
+require_relative 'base'
 
 module FjordBootCamp
   module Resources
@@ -12,7 +12,7 @@ module FjordBootCamp
         params = {}
         params[:week_start] = week_start if week_start
         params[:company_id] = company_id if company_id
-        get("/api/trainee_progresses", params)
+        get('/api/trainee_progresses', params)
       end
     end
   end

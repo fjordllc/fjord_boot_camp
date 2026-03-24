@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "base"
+require_relative 'base'
 
 module FjordBootCamp
   module Resources
@@ -16,7 +16,7 @@ module FjordBootCamp
         params[:company_id] = company_id if company_id
         params[:tag] = tag if tag
         params[:page] = page if page
-        get("/api/users", params)
+        get('/api/users', params)
       end
 
       # ユーザー詳細を取得
@@ -27,12 +27,12 @@ module FjordBootCamp
 
       # 研修生一覧を取得
       def trainees
-        list(target: "trainee")
+        list(target: 'trainee')
       end
 
       # メンター一覧を取得
       def mentors
-        list(target: "mentor")
+        list(target: 'mentor')
       end
     end
   end
