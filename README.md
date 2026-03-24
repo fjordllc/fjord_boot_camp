@@ -19,8 +19,13 @@ gem "fjord_boot_camp"
 環境変数を設定:
 
 ```bash
-export BOOTCAMP_URL="https://bootcamp.fjord.jp"
 export BOOTCAMP_ACCESS_TOKEN="your-oauth-token"
+```
+
+`BOOTCAMP_URL` はデフォルトで `https://bootcamp.fjord.jp` が設定済み。変更が必要な場合のみ指定:
+
+```bash
+export BOOTCAMP_URL="https://your-custom-url.example.com"  # 省略可
 ```
 
 ## CLI で使う
