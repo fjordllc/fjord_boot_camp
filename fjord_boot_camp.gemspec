@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.description   = "A Ruby gem to interact with the FJORD BOOT CAMP API. Provides both a library and CLI for accessing reports, users, practices, and trainee progress data."
   spec.homepage      = "https://github.com/fjordllc/fjord_boot_camp"
   spec.license       = "MIT"
-  # spec.required_ruby_version = ">= 3.1.0"
+  spec.required_ruby_version = ">= 3.1.0"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/fjordllc/fjord_boot_camp"
@@ -28,4 +28,8 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "faraday", ">= 1.0", "< 3.0"
   spec.add_dependency "thor", "~> 1.0"
+
+  spec.add_development_dependency "minitest", "~> 5.0"
+  spec.add_development_dependency "rake", "~> 13.0"
+  spec.add_development_dependency "webmock", "~> 3.0"
 end
