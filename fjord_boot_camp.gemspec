@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.description   = 'A Ruby gem to interact with the FJORD BOOT CAMP API. Provides both a library and CLI for accessing reports, users, practices, and trainee progress data.'
   spec.homepage      = 'https://github.com/fjordllc/fjord_boot_camp'
   spec.license       = 'MIT'
-  spec.required_ruby_version = '>= 3.1.0'
+  spec.required_ruby_version = '>= 3.2.0'
 
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = 'https://github.com/fjordllc/fjord_boot_camp'
