@@ -7,6 +7,7 @@ require 'fjord_boot_camp/resources/reports'
 require 'fjord_boot_camp/resources/users'
 require 'fjord_boot_camp/resources/practices'
 require 'fjord_boot_camp/resources/trainee_progresses'
+require 'fjord_boot_camp/resources/comments'
 
 module FjordBootCamp
   class Error < StandardError; end

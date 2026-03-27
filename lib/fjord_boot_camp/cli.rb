@@ -92,6 +92,44 @@ module FjordBootCamp
       json_output? ? puts(JSON.pretty_generate(data)) : print_progress_report(data)
     end
 
+    desc 'comments [list|create|update|delete]', 'コメントを管理'
+    option :commentable_type, type: :string, desc: 'コメント対象の種類 (例: Report, Product, Question)'
+    option :commentable_id, type: :numeric, desc: 'コメント対象のID'
+    option :description, type: :string, desc: 'コメント本文（Markdown対応）'
+    option :limit, type: :numeric, desc: '取得件数'
+    option :offset, type: :numeric, desc: 'オフセット'
+    def comments(subcommand = 'list', id = nil)
+      case subcommand
+      when 'list'
+        abort '--commentable-type と --commentable-id が必要です' unless options[:commentable_type] && options[:commentable_id]
+        data = client.comments.list(
+          commentable_type: options[:commentable_type],
+          commentable_id: options[:commentable_id],
+          limit: options[:limit],
+          offset: options[:offset]
+        )
+        json_output? ? puts(JSON.pretty_generate(data)) : print_comments(data)
+      when 'create'
+        abort '--commentable-type, --commentable-id, --description が必要です' unless options[:commentable_type] && options[:commentable_id] && options[:description]
+        data = client.comments.create(
+          commentable_type: options[:commentable_type],
+          commentable_id: options[:commentable_id],
+          description: options[:description]
+        )
+        puts json_output? ? JSON.pretty_generate(data) : 'コメントを投稿しました ✅'
+      when 'update'
+        abort 'Usage: fjord_boot_camp comments update ID --description TEXT' unless id && options[:description]
+        client.comments.update(id, description: options[:description])
+        puts 'コメントを更新しました ✅'
+      when 'delete'
+        abort 'Usage: fjord_boot_camp comments delete ID' unless id
+        client.comments.destroy(id)
+        puts 'コメントを削除しました ✅'
+      else
+        abort "Unknown subcommand: #{subcommand}. Use: list, create, update, delete"
+      end
+    end
+
     desc 'version', 'バージョンを表示'
     def version
       puts "fjord_boot_camp #{FjordBootCamp::VERSION}"
@@ -152,6 +190,17 @@ module FjordBootCamp
       puts "👤 #{u['longName'] || u['login_name']}"
       puts "   ログイン名: #{u['login_name']}"
       puts "   ロール: #{u['roles']&.join(', ')}"
+    end
+
+    def print_comments(data)
+      comments = data.is_a?(Array) ? data : (data['comments'] || [data])
+      comments.each do |c|
+        next unless c.is_a?(Hash)
+
+        author = c.dig('user', 'longName') || c.dig('user', 'login_name') || '?'
+        desc = (c['description'] || '').lines.first&.strip || ''
+        puts "💬 #{author}: #{desc}"
+      end
     end
 
     def print_practices(practices)

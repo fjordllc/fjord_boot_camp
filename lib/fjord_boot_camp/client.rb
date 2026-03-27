@@ -27,8 +27,33 @@ module FjordBootCamp
       Resources::TraineeProgresses.new(self)
     end
 
+    def comments
+      Resources::Comments.new(self)
+    end
+
     def get(path, params = {})
       response = connection.get(path, params)
+      handle_response(response)
+    end
+
+    def post(path, body = {})
+      response = connection.post(path) do |req|
+        req.headers['Content-Type'] = 'application/json'
+        req.body = body.to_json
+      end
+      handle_response(response)
+    end
+
+    def patch(path, body = {})
+      response = connection.patch(path) do |req|
+        req.headers['Content-Type'] = 'application/json'
+        req.body = body.to_json
+      end
+      handle_response(response)
+    end
+
+    def delete(path)
+      response = connection.delete(path)
       handle_response(response)
     end
 

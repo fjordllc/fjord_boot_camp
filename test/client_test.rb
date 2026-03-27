@@ -42,6 +42,40 @@ class ClientTest < Minitest::Test
     end
   end
 
+  def test_post_sends_json_body
+    stub_request(:post, "#{BASE_URL}/api/comments")
+      .with(
+        body: { comment: { description: 'test' } }.to_json,
+        headers: { 'Content-Type' => 'application/json' }
+      )
+      .to_return(status: 201, body: '{"id":1}', headers: { 'Content-Type' => 'application/json' })
+
+    client = setup_client
+    data = client.post('/api/comments', { comment: { description: 'test' } })
+
+    assert_equal 1, data['id']
+  end
+
+  def test_patch_sends_json_body
+    stub_request(:patch, "#{BASE_URL}/api/comments/1")
+      .with(
+        body: { comment: { description: 'updated' } }.to_json,
+        headers: { 'Content-Type' => 'application/json' }
+      )
+      .to_return(status: 200, body: '{}', headers: { 'Content-Type' => 'application/json' })
+
+    client = setup_client
+    client.patch('/api/comments/1', { comment: { description: 'updated' } })
+  end
+
+  def test_delete_request
+    stub_request(:delete, "#{BASE_URL}/api/comments/1")
+      .to_return(status: 200, body: '{}', headers: { 'Content-Type' => 'application/json' })
+
+    client = setup_client
+    client.delete('/api/comments/1')
+  end
+
   def test_parses_json_response
     stub_api(:get, '/api/reports', response_body: { 'reports' => [{ 'id' => 1 }] })
 
